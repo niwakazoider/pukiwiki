@@ -356,9 +356,16 @@ function plugin_counter_get_popular_list_db($today, $except, $max) {
 		$except_quote = str_replace('#', '\#', $except);
 		$limit = $max + 100;
 		if ($today) {
-			$stmt->execute(array($today, $limit));
+			//$stmt->execute(array($today, $limit));
+			// For MySQL
+			$stmt->bindParam(1, $today, PDO::PARAM_STR);
+			$stmt->bindParam(2, $limit, PDO::PARAM_INT);
+			$stmt->execute();
 		} else {
-			$stmt->execute(array($limit));
+			//$stmt->execute(array($limit));
+			// For MySQL
+			$stmt->bindParam(1, $limit, PDO::PARAM_INT);
+			$stmt->execute();
 		}
 		foreach ($stmt as $r) {
 			$page = $r['page_name'];
