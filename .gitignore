@@ -2,7 +2,7 @@
 /attach
 /backup
 /cache
-/counter
+/counter/*
 /diff
 
 /attach/*.[0-9]
@@ -12,6 +12,7 @@
 /cache/*.rel
 /counter/*.count
 /counter/*.db
+!/counter/counter.db
 
 /diff/*.txt
 /wiki/*.txt
